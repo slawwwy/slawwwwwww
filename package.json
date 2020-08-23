@@ -1,27 +1,20 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
-  "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
+  "name": "ads-manager",
+  "version": "10.0.0",
+  "description": "Simple shitty music",
   "main": "server.js",
+  "author": "LuXy",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^7.1.0",
+    "discord.js": "^12.2.0",
+    "enmap": "^5.3.1",
+    "moment": "^2.27.0",
+    "ms": "^2.1.2",
+    "express": "4.17.1",
+    "opusscript": "0.0.7"
+  },
   "scripts": {
     "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.17.1"
-  },
-  "engines": {
-    "node": "12.x"
-  },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
-  },
-  "license": "MIT",
-  "keywords": [
-    "node",
-    "glitch",
-    "express"
-  ]
+  }
 }
