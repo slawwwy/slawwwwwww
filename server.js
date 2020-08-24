@@ -30,14 +30,6 @@ client.on("ready", () => {
 });
 
 client.on("message", async message => {
-  if (message.content === 'join') {
-    if (message.member.voice.channel) {
-      const connection = await message.member.voice.channel.join();
-    } else {
-      message.reply('You need to join a voice channel first!');
-    }
-  }
-  
   if (
     message.author.bot ||
     message.channel.type !== "dm" ||
@@ -52,23 +44,53 @@ client.on("message", async message => {
     });
   }
 
-  if (db.get(user.id, "last") !== null && moment().diff(moment(parseInt(db.get(user.id, "last"))), "h") < time) {
-    message.channel.send(`> **You need to wait until it ends ${moment(parseInt(db.get(user.id, "last"))).add(time, "h").fromNow()}**`);
+  if (
+    db.get(user.id, "last") !== null &&
+    moment().diff(moment(parseInt(db.get(user.id, "last"))), "h") < time
+  ) {
+    message.channel.send(
+      `> **You need to wait until it ends ${moment(
+        parseInt(db.get(user.id, "last"))
+      )
+        .add(time, "h")
+        .fromNow()}**`
+    );
     return;
   }
-  
-  var ad_message = message.content.replace("@everyone", "").replace("@here", "");
+
+  var ad_message = message.content
+    .replace("@everyone", "")
+    .replace("@here", "");
 
   client.channels.cache
     .get(config.ad_channel)
     .send(ad_message + "\n\n<@" + user.id + ">");
 
-
-  message.channel.send(">>> **Done.\nCheck <#"+client.channels.cache.get(config.ad_channel).id +
+  message.channel.send(
+    ">>> **Done.\nCheck <#" +
+      client.channels.cache.get(config.ad_channel).id +
       ">**"
   );
 
   db.set(user.id, moment().format("x"), "last");
 });
+const yt = require("ytdl-core");
 
-client.login("");
+client.on("voiceStateUpdate", (oldMember, newMember) => {
+  if (
+    oldMember.voiceChannel === undefined &&
+    newMember.voiceChannel !== undefined
+  ) {
+    const voiceChannel = client.channels.get("732723467442454640"); ///// id channel
+    voiceChannel.join().then(connnection => {
+      let disp = yt("https://youtu.be/ihbaJXjpOqk", {
+        audioonly: true
+      });
+      const dispatcher = connnection.playStream(disp);
+    });
+  } else if (newMember.voiceChannel === undefined) {
+    const voiceChannel = client.channels.get("732723467442454640"); ////// id channel
+    voiceChannel.leave();
+  }
+});
+client.login(token);
