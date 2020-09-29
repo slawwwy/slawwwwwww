@@ -12,7 +12,8 @@
     "moment": "^2.27.0",
     "ms": "^2.1.2",
     "express": "4.17.1",
-    "opusscript": "0.0.7"
+    "opusscript": "0.0.7",
+    "ytdl-core": "^3.2.2"
   },
   "scripts": {
     "start": "node server.js"
