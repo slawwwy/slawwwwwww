@@ -26,11 +26,22 @@ const token = config.token;
 const time = config.time;
 
 client.on("ready", () => {
-  console.log("logged in as " + client.user.username);
+  console.log(
+    `Online In Servers : ${client.guilds.size} | Users : ${client.users.size}`
+  );
+  let statuses = ["MrFIX | send me you link"];
+
+  setInterval(function() {
+    let STREAMING = statuses[Math.floor(Math.random() * statuses.length)];
+    client.user.setActivity(STREAMING, {
+      type: "STREAMING",
+      url: "https://www.twitch.tv/faith"
+    });
+  }, 2000);
 });
 
 client.on("message", async message => {
-  if (message.content === "join") {
+  if (message.content === "j") {
     if (message.member.voice.channel) {
       const connection = await message.member.voice.channel.join();
     } else {
@@ -75,7 +86,7 @@ client.on("message", async message => {
     .send(ad_message + "\n\n<@" + user.id + ">");
 
   message.channel.send(
-    ">>> **Done.\nCheck <#" +
+    ">>> **Done https://discord.gg/pbMAmkC .\nCheck <#" +
       client.channels.cache.get(config.ad_channel).id +
       ">**"
   );
