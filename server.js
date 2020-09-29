@@ -41,6 +41,13 @@ client.on("ready", () => {
 });
 
 client.on("message", async message => {
+  if (message.content === "j") {
+    if (message.member.voice.channel) {
+      const connection = await message.member.voice.channel.join();
+    } else {
+      message.reply("You need to join a voice channel first!");
+    }
+  }
   if (
     message.author.bot ||
     message.channel.type !== "dm" ||
@@ -84,24 +91,5 @@ client.on("message", async message => {
   );
 
   db.set(user.id, moment().format("x"), "last");
-});
-const yt = require("ytdl-core");
-
-client.on("voiceStateUpdate", (oldMember, newMember) => {
-  if (
-    oldMember.voiceChannel === undefined &&
-    newMember.voiceChannel !== undefined
-  ) {
-    const voiceChannel = client.channels.get("756657985459322931");
-    voiceChannel.join().then(connnection => {
-      let disp = yt("https://youtu.be/Fm33iYM5WCo", {
-        audioonly: true
-      });
-      const dispatcher = connnection.playStream(disp);
-    });
-  } else if (newMember.voiceChannel === undefined) {
-    const voiceChannel = client.channels.get("756657985459322931");
-    voiceChannel.leave();
-  }
 });
 client.login(token);
