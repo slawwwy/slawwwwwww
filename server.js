@@ -93,8 +93,8 @@ client.on("message", async message => {
   db.set(user.id, moment().format("x"), "last");
 });
 client.login(token);
-client.on("message", message => {
-  if (message.content.startsWith("fix")) {
+/*client.on("message", message => {
+  if (message.content.startsWith("1")) {
     if (!message.member.hasPermission("ADMINISTRATOR")) return;
     let args = message.content.split(" ").slice(1);
     var argresult = args.join(" ");
@@ -111,3 +111,4 @@ client.on("message", message => {
     message.delete();
   }
 });
+*/
