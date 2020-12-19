@@ -85,7 +85,7 @@ client.on("message", async message => {
     .send(ad_message + "\n\n<@" + user.id + ">");
 
   message.channel.send(
-    ">>> ** https://discord.gg/BKybcVA .\nCheck <#" +
+    ">>> ** https://discord.gg/JUfDdV9hcD .\nCheck <#" +
       client.channels.cache.get(config.ad_channel).id +
       ">**"
   );
