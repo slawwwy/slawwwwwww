@@ -29,7 +29,7 @@ client.on("ready", () => {
   console.log(
     `Online In Servers : ${client.guilds.size} | Users : ${client.users.size}`
   );
-  let statuses = ["MrFIX | send me you link"];
+  let statuses = ["✅| Send Me Your Server Linke"];
 
   setInterval(function() {
     let STREAMING = statuses[Math.floor(Math.random() * statuses.length)];
@@ -41,7 +41,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async message => {
-  if (message.content === "j") {
+  if (message.content === "") {
     if (message.member.voice.channel) {
       const connection = await message.member.voice.channel.join();
     } else {
@@ -51,7 +51,7 @@ client.on("message", async message => {
   if (
     message.author.bot ||
     message.channel.type !== "dm" ||
-    !message.content.includes("discord.gg")
+    !message.content.includes("")
   )
     return;
 
@@ -85,9 +85,9 @@ client.on("message", async message => {
     .send(ad_message + "\n\n<@" + user.id + ">");
 
   message.channel.send(
-    ">>> ** https://discord.gg/5rvGYzev58 .\nCheck <#" +
+    "Linke Servert" +
       client.channels.cache.get(config.ad_channel).id +
-      ">**"
+      ""
   );
 
   db.set(user.id, moment().format("x"), "last");
