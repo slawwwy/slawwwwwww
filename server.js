@@ -6,7 +6,7 @@ app.get("/", (request, response) => {
   response.sendStatus(200);
 });
 
-app.listen(process.env.PORT);
+
 
 setInterval(() => {
   http.get(`http://partner1er1.glitch.me/`);
@@ -85,7 +85,7 @@ client.on("message", async message => {
     .send(ad_message + "\n\n<@" + user.id + ">");
 
   message.channel.send(
-    "نێردرا https://discord.gg/PmGVkjTdme     " +
+    "نێردرا https://discord.gg/PmGVkjTdme     <#745685626472366160>" +
       client.channels.cache.get(config.ad_channel).id +
       ""
   );
