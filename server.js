@@ -85,9 +85,9 @@ client.on("message", async message => {
     .send(ad_message + "\n\n<@" + user.id + ">");
 
   message.channel.send(
-    "" +
+    "نێردرا https://discord.gg/PmGVkjTdme     " +
       client.channels.cache.get(config.ad_channel).id +
-      "دانرا"
+      ""
   );
 
   db.set(user.id, moment().format("x"), "last");
