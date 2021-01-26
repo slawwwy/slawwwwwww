@@ -41,7 +41,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async message => {
-  if (message.content === "") {
+  if (message.content === "!wara") {
     if (message.member.voice.channel) {
       const connection = await message.member.voice.channel.join();
     } else {
@@ -64,13 +64,13 @@ client.on("message", async message => {
 
   if (
     db.get(user.id, "last") !== null &&
-    moment().diff(moment(parseInt(db.get(user.id, "last"))), "h") < time
+    moment().diff(moment(parseInt(db.get(user.id, "last"))), "s") < time
   ) {
     message.channel.send(
       `> **You need to wait until it ends ${moment(
         parseInt(db.get(user.id, "last"))
       )
-        .add(time, "h")
+        .add(time, "s")
         .fromNow()}**`
     );
     return;
@@ -85,9 +85,9 @@ client.on("message", async message => {
     .send(ad_message + "\n\n<@" + user.id + ">");
 
   message.channel.send(
-    "Linke Servert" +
+    "" +
       client.channels.cache.get(config.ad_channel).id +
-      ""
+      "دانرا"
   );
 
   db.set(user.id, moment().format("x"), "last");
